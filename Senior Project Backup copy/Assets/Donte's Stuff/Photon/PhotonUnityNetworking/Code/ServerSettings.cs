@@ -59,7 +59,7 @@ namespace Photon.Pun
         {
             this.AppSettings.AppIdRealtime = cloudAppid;
             this.AppSettings.Server = null;
-            this.AppSettings.FixedRegion = string.IsNullOrEmpty(code) ? null : code;
+            this.AppSettings.FixedRegion = "us"; // Set Photon to use the general US region, changed by Donte :)
         }
 
         /// <summary>Checks if a string is a Guid by attempting to create one.</summary>
