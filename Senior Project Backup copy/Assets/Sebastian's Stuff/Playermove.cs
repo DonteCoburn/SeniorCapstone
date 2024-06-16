@@ -1,9 +1,11 @@
 using System.Collections.Generic;
 using System.Collections;
 using UnityEngine;
+using Photon.Pun; //For Photon, do not remove -Donte
 
 public class PlayerMovement2 : MonoBehaviour
 {
+    PhotonView view; //For Photon, do not remove -Donte
     private float horizontal;
     private float speed = 8f;
     private float jumpingPower = 12f;
@@ -20,31 +22,39 @@ public class PlayerMovement2 : MonoBehaviour
     [SerializeField] private LayerMask groundLayer;
     [SerializeField] private TrailRenderer tr;
 
+    private void Start()
+    {
+        view = GetComponent<PhotonView>(); //This makes it so each player only has control of their own character -Donte
+    }
+
     private void Update()
     {
-        if (isDashing)
+        if (view.IsMine)
         {
-            return;
+            if (isDashing)
+            {
+                return;
+            }
+
+            horizontal = Input.GetAxisRaw("Horizontal");
+
+            if (Input.GetButtonDown("Jump") && IsGrounded())
+            {
+                rb.velocity = new Vector2(rb.velocity.x, jumpingPower);
+            }
+
+            if (Input.GetButtonUp("Jump") && rb.velocity.y > 0f)
+            {
+                rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * 0.5f);
+            }
+
+            if (Input.GetKeyDown(KeyCode.LeftShift) && canDash)
+            {
+                StartCoroutine(Dash());
+            }
+
+            Flip();
         }
-
-        horizontal = Input.GetAxisRaw("Horizontal");
-
-        if (Input.GetButtonDown("Jump") && IsGrounded())
-        {
-            rb.velocity = new Vector2(rb.velocity.x, jumpingPower);
-        }
-
-        if (Input.GetButtonUp("Jump") && rb.velocity.y > 0f)
-        {
-            rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * 0.5f);
-        }
-
-        if (Input.GetKeyDown(KeyCode.LeftShift) && canDash)
-        {
-            StartCoroutine(Dash());
-        }
-
-        Flip();
     }
 
     private void FixedUpdate()
@@ -88,4 +98,6 @@ public class PlayerMovement2 : MonoBehaviour
         yield return new WaitForSeconds(dashingCooldown);
         canDash = true;
     }
+
+
 }
