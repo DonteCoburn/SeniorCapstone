@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 3997202890464326715}
   - component: {fileID: 5498540496214137643}
   - component: {fileID: 1342630622018186655}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Player Test
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -190,7 +190,7 @@ MonoBehaviour:
   ObservedComponentsFoldoutOpen: 1
   Group: 0
   prefixField: -1
-  Synchronization: 3
+  Synchronization: 1
   OwnershipTransfer: 0
   observableSearch: 2
   ObservedComponents:
