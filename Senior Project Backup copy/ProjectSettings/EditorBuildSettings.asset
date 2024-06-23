@@ -20,4 +20,14 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Allen's Stuff/_Scenes/Tutorial Level.unity
     guid: 45eec5d4ba22ee347a8fcc45b9655841
-  m_configObjects: {}
+  - enabled: 1
+    path: Assets/Allen's Stuff/_Scenes/SingleLevel1.unity
+    guid: bf04280f9a13d674ea783d25a8cfc659
+  - enabled: 1
+    path: Assets/Allen's Stuff/_Scenes/SingleLevel2.unity
+    guid: 4ea858eabd4eb144bb86fb6c82b879f3
+  - enabled: 1
+    path: Assets/Allen's Stuff/_Scenes/SingleLevel3.unity
+    guid: 5d56ef826c9c713468b36fde3bdaeb9c
+  m_configObjects:
+    com.unity.input.settings: {fileID: 11400000, guid: d2eae789d736728498a52475f8e7fa42, type: 2}
