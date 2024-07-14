@@ -2,8 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
-
-//This code makes the player a player object to control and a camera for them to see through.
+using UnityEngine.SceneManagement;
 
 public class SpawnPlayers : MonoBehaviour
 {
@@ -16,7 +15,16 @@ public class SpawnPlayers : MonoBehaviour
 
     private void Start()
     {
-        Vector2 randomPosition = new Vector2(Random.Range(minX, maxX), Random.Range(minY, maxY));
+        //Have to make this part more elaborate to work with our level structure -Donte
+        Vector2 randomPosition;
+        if (SceneManager.GetActiveScene().name == "SingleLevel1")
+        {
+            randomPosition = new Vector2(-14f, 0f);
+        }
+        else
+        {
+            randomPosition = new Vector2(Random.Range(minX, maxX), Random.Range(minY, maxY));
+        }
         GameObject player = PhotonNetwork.Instantiate(playerPrefab.name, randomPosition, Quaternion.identity);
         Instantiate(cameraPrefab, randomPosition, Quaternion.identity);
     }

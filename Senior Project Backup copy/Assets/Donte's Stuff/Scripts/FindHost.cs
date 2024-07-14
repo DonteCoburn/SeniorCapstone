@@ -9,7 +9,8 @@ public class FindHost : MonoBehaviourPunCallbacks
     private void Start()
     {
         Debug.Log("Start: Checking if current player is master client...");
-        startGameButton.SetActive(false); // Ensure the button is hidden on start
+        // May have to get rid of this line
+        //startGameButton.SetActive(false); // Ensure the button is hidden on start
 
         if (PhotonNetwork.IsMasterClient && PhotonNetwork.CurrentRoom.PlayerCount == 1)
         {

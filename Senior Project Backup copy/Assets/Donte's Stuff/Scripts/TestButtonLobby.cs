@@ -15,7 +15,6 @@ public class TestLobbyUIManager : MonoBehaviourPun
     public Button startButton;
     public int startCount = 3;
 
-    //Initally we need the button to not be visible, as we don't want multiplayer games with one person.
     private void Start()
     {
         displayText.gameObject.SetActive(false);
@@ -54,7 +53,7 @@ public class TestLobbyUIManager : MonoBehaviourPun
 
         if (PhotonNetwork.IsMasterClient)
         {
-            photonView.RPC("LoadSceneForAll", RpcTarget.All, "Tutorial Level");
+            photonView.RPC("LoadSceneForAll", RpcTarget.All, "SingleLevel1");
         }
     }
 
