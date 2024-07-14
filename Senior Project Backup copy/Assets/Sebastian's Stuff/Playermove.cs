@@ -3,7 +3,7 @@ using System.Collections;
 using UnityEngine;
 using Photon.Pun; //For Photon, do not remove -Donte
 
-public class PlayerMovement2 : MonoBehaviour
+public class PlayerMovement2 : MonoBehaviour, IPunObservable
 {
     PhotonView view; //For Photon, do not remove -Donte
     private float horizontal;
@@ -65,6 +65,21 @@ public class PlayerMovement2 : MonoBehaviour
         }
 
         rb.velocity = new Vector2(horizontal * speed, rb.velocity.y);
+    }
+
+    //Important Network stuff -Donte
+    public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
+    {
+        if (stream.IsWriting)
+        {
+            stream.SendNext(transform.position);
+            stream.SendNext(isDashing);
+        }
+        else
+        {
+            transform.position = (Vector3)stream.ReceiveNext();
+            isDashing = (bool)stream.ReceiveNext();
+        }
     }
 
     private bool IsGrounded()
