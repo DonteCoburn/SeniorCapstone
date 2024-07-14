@@ -5,6 +5,7 @@ using System.Linq;
 using Unity.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 /// <summary>
 /// Class which manages the game
@@ -19,6 +20,8 @@ public class GameManager : MonoBehaviour
     public UIManager uiManager = null;
     [Tooltip("The player gameobject")]
     public GameObject player = null;
+    [Tooltip("Timer that will display while player is in-game")]
+    [SerializeField] public GameObject timerText;
 
     [Header("Scores")]
     [Tooltip("The player's score")]

@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -11,10 +11,6 @@ public class GoalPickup : Pickup
     /// Description:
     /// Function called when this pickup is picked up
     /// Tells the game manager that the level was cleared
-    /// Input: 
-    /// Collider2D collision
-    /// Return: 
-    /// void (no return)
     /// </summary>
     /// <param name="collision">The collider that is picking up this pickup</param>
     public override void DoOnPickup(Collider2D collision)
@@ -29,3 +25,4 @@ public class GoalPickup : Pickup
         base.DoOnPickup(collision);
     }
 }
+
