@@ -3,7 +3,7 @@ using UnityEngine.UI;
 using TMPro;
 using Photon.Pun;
 using System.Collections.Generic;
-using UnityEngine.SceneManagement; // Needed to handle scene changes
+using UnityEngine.SceneManagement;
 
 public class EndGoal : MonoBehaviourPunCallbacks
 {
@@ -42,7 +42,7 @@ public class EndGoal : MonoBehaviourPunCallbacks
         if (PhotonNetwork.IsConnected)
         {
             AssignPlayerNumbers();
-            //UpdateUIForNewPlayer();
+            //UpdateUIForNewPlayer(); Considering if necessary
         }
     }
 
@@ -110,7 +110,7 @@ public class EndGoal : MonoBehaviourPunCallbacks
             }
             else
             {
-                // Handle the case where finishTime is not as expected
+                // Handle the case where finishTime is not as expected, idk what's causing this issue -Donte
                 Debug.LogError("Unexpected finishTime format: " + finishTime);
             }
         }
@@ -159,7 +159,7 @@ public class EndGoal : MonoBehaviourPunCallbacks
         actorNumbers.Sort();
         for (int i = 0; i < actorNumbers.Count; i++)
         {
-            playerNumbers[actorNumbers[i]] = i + 1; // P1, P2, P3, etc.
+            playerNumbers[actorNumbers[i]] = i + 1; // P1, P2, P3....
         }
     }
 
@@ -170,7 +170,7 @@ public class EndGoal : MonoBehaviourPunCallbacks
         {
             return color;
         }
-        return Color.white; // default color in case of error
+        return Color.white; // default color in case of error, idk if necessary
     }
 }
 

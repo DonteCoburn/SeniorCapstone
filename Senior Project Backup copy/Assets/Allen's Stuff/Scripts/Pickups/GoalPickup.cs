@@ -15,10 +15,10 @@ public class GoalPickup : MonoBehaviour
             PhotonView pv = collision.GetComponent<PhotonView>();
             if (pv != null && pv.IsMine)
             {
-                PlayerMovement2 movePlayerScript = collision.GetComponent<PlayerMovement2>();  // Assuming MovePlayer script is directly on the player object
+                PlayerMovement2 movePlayerScript = collision.GetComponent<PlayerMovement2>();
                 if (movePlayerScript != null)
                 {
-                    movePlayerScript.DisableMovement();  // Assuming there's a method to disable controls
+                    movePlayerScript.DisableMovement();
                 }
 
                 if (endGoal != null)
@@ -28,7 +28,7 @@ public class GoalPickup : MonoBehaviour
 
                 if (spectateSystem != null)
                 {
-                    spectateSystem.MakeButtonInteractable();  // Enable the button via SpectateSystem
+                    spectateSystem.MakeButtonInteractable();
                 }
             }
         }

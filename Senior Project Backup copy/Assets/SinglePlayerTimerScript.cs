@@ -2,6 +2,10 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.SceneManagement;
 
+/// <summary>
+/// This is like a simplified version of the multiplayer timer, but with less functionalities since they arne't needed
+/// </summary>
+
 public class SinglePlayerTimerScript : MonoBehaviour
 {
     public TextMeshProUGUI timerText;
@@ -10,18 +14,18 @@ public class SinglePlayerTimerScript : MonoBehaviour
 
     void Start()
     {
-        SceneManager.sceneLoaded += OnSceneLoaded; // Register to listen to the scene loaded event
+        SceneManager.sceneLoaded += OnSceneLoaded;
         StartTimer();
     }
 
     void OnDestroy()
     {
-        SceneManager.sceneLoaded -= OnSceneLoaded; // Unregister the listener
+        SceneManager.sceneLoaded -= OnSceneLoaded;
     }
 
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        ResetTimer(); // Reset the timer when a new scene is loaded
+        ResetTimer();
     }
 
     public void StartTimer()
@@ -33,7 +37,7 @@ public class SinglePlayerTimerScript : MonoBehaviour
     public void ResetTimer()
     {
         startTime = Time.time;
-        timerActive = false; // Stop the timer until explicitly started again
+        timerActive = false;
     }
 
     void Update()

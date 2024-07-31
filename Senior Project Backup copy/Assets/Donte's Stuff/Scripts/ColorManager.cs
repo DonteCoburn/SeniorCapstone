@@ -2,6 +2,9 @@ using UnityEngine;
 using Photon.Pun;
 using System.Collections.Generic;
 
+// This manages all the player's colors, anything that uses player based colors uses this
+// Exception: Scoreboard doesn't because that thing was a nightmare
+
 public class ColorManager : MonoBehaviourPunCallbacks
 {
     private Dictionary<int, Color> playerColorsByActorNumber = new Dictionary<int, Color>();

@@ -3,6 +3,8 @@ using Photon.Pun;
 using System.Collections;
 using System.Collections.Generic;
 
+//This basically jsut makes sure the color manager does it's job
+
 public class UpdatePlayerColors : MonoBehaviour
 {
     public ColorManager colorManager;

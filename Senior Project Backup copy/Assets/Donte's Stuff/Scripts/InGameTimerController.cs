@@ -1,7 +1,7 @@
 using UnityEngine;
 using TMPro;
 using Photon.Pun;
-using UnityEngine.SceneManagement;  // Add this for managing scenes
+using UnityEngine.SceneManagement;
 
 public class MultiplayerTimerScript : MonoBehaviourPunCallbacks
 {
@@ -11,7 +11,7 @@ public class MultiplayerTimerScript : MonoBehaviourPunCallbacks
 
     void Start()
     {
-        SceneManager.sceneLoaded += OnSceneLoaded;  // Register to listen to the scene loaded event
+        SceneManager.sceneLoaded += OnSceneLoaded;
 
         object startTimeFromProperties;
         if (PhotonNetwork.CurrentRoom.CustomProperties.TryGetValue("StartTime", out startTimeFromProperties))
@@ -27,12 +27,12 @@ public class MultiplayerTimerScript : MonoBehaviourPunCallbacks
 
     void OnDestroy()
     {
-        SceneManager.sceneLoaded -= OnSceneLoaded;  // Unregister the listener
+        SceneManager.sceneLoaded -= OnSceneLoaded;
     }
 
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        ResetTimer();  // Reset the timer when a new scene is loaded
+        ResetTimer();
     }
 
     public void StartTimer()
@@ -45,13 +45,13 @@ public class MultiplayerTimerScript : MonoBehaviourPunCallbacks
     public void ResetTimer()
     {
         startTime = (float)PhotonNetwork.Time;
-        timerActive = false;  // Stop the timer until explicitly started again
-        UpdateRoomProperties();  // Update the room properties to reflect the reset
+        timerActive = false;  
+        UpdateRoomProperties();
     }
 
     void UpdateRoomProperties()
     {
-        string concatenatedTimes = string.Join(",", new string[] { }); // Clear any previous times
+        string concatenatedTimes = string.Join(",", new string[] { });
         PhotonNetwork.CurrentRoom.SetCustomProperties(new ExitGames.Client.Photon.Hashtable { { "finishTimes", concatenatedTimes }, { "StartTime", startTime } });
     }
 
@@ -77,59 +77,3 @@ public class MultiplayerTimerScript : MonoBehaviourPunCallbacks
     }
 }
 
-
-
-/*
-using UnityEngine;
-using TMPro;
-using Photon.Pun;
-
-public class MultiplayerTimerScript : MonoBehaviourPunCallbacks
-{
-    public TextMeshProUGUI timerText;
-    private bool timerActive = false;
-    private float startTime;
-
-    void Start()
-    {
-        object startTimeFromProperties;
-        if (PhotonNetwork.CurrentRoom.CustomProperties.TryGetValue("StartTime", out startTimeFromProperties))
-        {
-            startTime = (float)startTimeFromProperties;
-            timerActive = true;
-        }
-        else if (PhotonNetwork.IsMasterClient)
-        {
-            StartTimer();
-        }
-    }
-
-    public void StartTimer()
-    {
-        startTime = (float)PhotonNetwork.Time;
-        PhotonNetwork.CurrentRoom.SetCustomProperties(new ExitGames.Client.Photon.Hashtable { { "StartTime", startTime } });
-        timerActive = true;
-    }
-
-    public override void OnRoomPropertiesUpdate(ExitGames.Client.Photon.Hashtable propertiesThatChanged)
-    {
-        if (propertiesThatChanged.ContainsKey("StartTime"))
-        {
-            startTime = (float)propertiesThatChanged["StartTime"];
-            timerActive = true;
-        }
-    }
-
-    void Update()
-    {
-        if (timerActive)
-        {
-            float t = (float)PhotonNetwork.Time - startTime;
-            string minutes = ((int)t / 60).ToString("00");
-            string seconds = (t % 60).ToString("00");
-            string milliseconds = ((int)(t * 1000) % 1000).ToString("000");
-            timerText.text = minutes + ":" + seconds + ":" + milliseconds;
-        }
-    }
-}
-*/
