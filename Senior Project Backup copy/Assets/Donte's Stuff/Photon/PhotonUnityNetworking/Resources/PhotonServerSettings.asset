@@ -43,6 +43,8 @@ MonoBehaviour:
   - StartCountdown
   - LoadSceneForAll
   - UpdateCameraTarget
+  - RecordFinishTime
+  - UpdateFinishTimesForNewPlayer
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 0

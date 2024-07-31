@@ -5,6 +5,8 @@ using Photon.Realtime;
 public class FindHost : MonoBehaviourPunCallbacks
 {
     public GameObject startGameButton;
+    public UpdatePlayerColors updatePlayerColorsScript; // Reference to the UpdatePlayerColors script
+
 
     private void Start()
     {
@@ -24,12 +26,24 @@ public class FindHost : MonoBehaviourPunCallbacks
     {
         Debug.Log("OnJoinedRoom: A player has joined the room.");
         UpdateButtonVisibility();
+
+        // Update player colors after all players have spawned
+        if (updatePlayerColorsScript != null)
+        {
+            updatePlayerColorsScript.UpdateAllPlayerColors();
+        }
     }
 
     public override void OnPlayerEnteredRoom(Photon.Realtime.Player newPlayer)
     {
         Debug.Log($"OnPlayerEnteredRoom: New player entered: {newPlayer.NickName}");
         UpdateButtonVisibility();
+
+        // Update player colors after all players have spawned
+        if (updatePlayerColorsScript != null)
+        {
+            updatePlayerColorsScript.UpdateAllPlayerColors();
+        }
     }
 
     public override void OnPlayerLeftRoom(Player otherPlayer)
@@ -49,6 +63,12 @@ public class FindHost : MonoBehaviourPunCallbacks
         }
 
         UpdateButtonVisibility();
+
+        // Update player colors after all players have spawned
+        if (updatePlayerColorsScript != null)
+        {
+            updatePlayerColorsScript.UpdateAllPlayerColors();
+        }
     }
 
     private void AssignNewHost()

@@ -4,31 +4,23 @@ using Photon.Realtime;
 using UnityEngine.UI;
 using System.Collections.Generic;
 
-//Basically how this code works is it cycles through the current players whenever you hit the spectate button
-//Then it tells the players own camera to change target based on where it is in the cycle
-//Technically there is a minor low-priority bug if the currect target leaves, but it only makes the camera look at nothing
-//Bug goes away when button is hit once more.
-//-Donte
-
-
 public class SpectateSystem : MonoBehaviourPun
 {
     public Button logButton;
     private int currentActorNumber;
 
-
-    //Initially there is no current number, it gets assigned to the player's number
     void Start()
     {
         if (logButton != null)
         {
             logButton.onClick.AddListener(UpdateCurrentActorNumber);
+            logButton.interactable = false; // Disable button interactions initially
+            logButton.gameObject.SetActive(false); // Make the button invisible initially
         }
         currentActorNumber = PhotonNetwork.LocalPlayer.ActorNumber;
         Debug.Log($"Initial actor number is {currentActorNumber}");
     }
 
-    //Whenever the button is hit it goes through the players and gets the next player and changes camera target
     void UpdateCurrentActorNumber()
     {
         List<int> actorNumbers = new List<int>();
@@ -56,6 +48,16 @@ public class SpectateSystem : MonoBehaviourPun
         {
             cameraFollow.SetTarget(currentActorNumber);
             Debug.Log($"Updated camera target to actor number: {currentActorNumber}");
+        }
+    }
+
+    // This method now not only makes the button interactable but also makes it visible.
+    public void MakeButtonInteractable()
+    {
+        if (logButton != null)
+        {
+            logButton.interactable = true;
+            logButton.gameObject.SetActive(true); // Make the button visible
         }
     }
 }
