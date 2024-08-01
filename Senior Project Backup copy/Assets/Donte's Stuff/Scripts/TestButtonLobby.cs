@@ -5,29 +5,28 @@ using Photon.Pun;
 using System.Collections;
 using UnityEngine.SceneManagement;
 
-/// <summary>
-/// This code is for controlling the button that starts the REAL game. -Donte
-/// </summary>
-
 public class TestLobbyUIManager : MonoBehaviourPun
 {
     public TMP_Text displayText;
     public Button startButton;
     public int startCount = 3;
+    public MultiplayerTimerScript timerScript;  // Reference to the MultiplayerTimerScript
 
     private void Start()
     {
         displayText.gameObject.SetActive(false);
+        // Get reference to the MultiplayerTimerScript
+        timerScript = FindObjectOfType<MultiplayerTimerScript>();
+        if (timerScript == null)
+        {
+            Debug.LogError("MultiplayerTimerScript component not found on any GameObject in the scene.");
+        }
     }
 
-    //This is ran when the button is hit, it makes it so they can't attempt to start the game again and the countdown for all players starts
     public void StartNetworkedCountdownAndLoadScene()
     {
-        if (PhotonNetwork.IsMasterClient)
-        {
-            startButton.interactable = false;
-            photonView.RPC("StartCountdown", RpcTarget.All);
-        }
+        startButton.interactable = false;
+        photonView.RPC("StartCountdown", RpcTarget.All);
     }
 
     [PunRPC]
@@ -37,7 +36,6 @@ public class TestLobbyUIManager : MonoBehaviourPun
         StartCoroutine(CountdownCoroutine());
     }
 
-    //Countdown code
     IEnumerator CountdownCoroutine()
     {
         int count = startCount;
@@ -50,9 +48,10 @@ public class TestLobbyUIManager : MonoBehaviourPun
         displayText.text = "Go!";
         yield return new WaitForSeconds(1);
 
-
         if (PhotonNetwork.IsMasterClient)
         {
+            // Reset the timer before loading the new scene, this has to be done this way or it doesn't work for some reason
+            timerScript.ResetTimer();
             photonView.RPC("LoadSceneForAll", RpcTarget.All, "SingleLevel1");
         }
     }

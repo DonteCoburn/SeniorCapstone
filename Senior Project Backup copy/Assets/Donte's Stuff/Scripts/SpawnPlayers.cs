@@ -12,10 +12,11 @@ public class SpawnPlayers : MonoBehaviour
     public float maxX;
     public float minY;
     public float maxY;
+    public UpdatePlayerColors updatePlayerColorsScript;
 
     private void Start()
     {
-        //Have to make this part more elaborate to work with our level structure -Donte
+        // Determine the spawn position based on the current scene, will have to make more robust later
         Vector2 randomPosition;
         if (SceneManager.GetActiveScene().name == "SingleLevel1")
         {
@@ -25,7 +26,20 @@ public class SpawnPlayers : MonoBehaviour
         {
             randomPosition = new Vector2(Random.Range(minX, maxX), Random.Range(minY, maxY));
         }
+
+        // Instantiates the player and camera objects, dont forget multiplayer and singleplayer have different player and camera objexts
         GameObject player = PhotonNetwork.Instantiate(playerPrefab.name, randomPosition, Quaternion.identity);
         Instantiate(cameraPrefab, randomPosition, Quaternion.identity);
+
+        // Updates the player colors after all players have spawned
+        if (updatePlayerColorsScript != null)
+        {
+            updatePlayerColorsScript.UpdateAllPlayerColors();
+        }
+        else
+        {
+            Debug.LogError("UpdatePlayerColors script not assigned!");
+        }
+        Debug.Log("Player colors have been updated");
     }
 }

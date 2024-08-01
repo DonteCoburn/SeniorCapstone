@@ -35,4 +35,5 @@ public class LobbyUIManager : MonoBehaviourPunCallbacks
             playerCountText.text = "Players in Lobby: " + PhotonNetwork.CurrentRoom.PlayerCount;
         }
     }
+
 }
