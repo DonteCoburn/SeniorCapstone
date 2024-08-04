@@ -46,6 +46,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   uiManager: {fileID: 0}
   player: {fileID: 0}
+  timerText: {fileID: 0}
   gameManagerScore: 0
   highScore: 0
   gameIsWinnable: 1

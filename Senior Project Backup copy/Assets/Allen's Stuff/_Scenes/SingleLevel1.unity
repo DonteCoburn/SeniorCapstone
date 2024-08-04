@@ -21525,7 +21525,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6601897341045078100, guid: f006cf5465b49454cadf7963274a18f5, type: 3}
       propertyPath: sceneViewId
-      value: 1
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 6601897341045078100, guid: f006cf5465b49454cadf7963274a18f5, type: 3}
       propertyPath: ObservedComponents.Array.size
@@ -21543,6 +21543,10 @@ PrefabInstance:
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: e4cff99bdcba65045bd79a993cb7a7cd, type: 2}
+    - target: {fileID: 8567103871567931446, guid: f006cf5465b49454cadf7963274a18f5, type: 3}
+      propertyPath: currentLives
+      value: 99
+      objectReference: {fileID: 0}
     - target: {fileID: 8851485316878263579, guid: f006cf5465b49454cadf7963274a18f5, type: 3}
       propertyPath: m_Name
       value: Player
@@ -22555,7 +22559,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7093856118664135256, guid: e7145f50975234a05a20b69ebf75671f, type: 3}
       propertyPath: sceneViewId
-      value: 1
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 8547168366825432069, guid: e7145f50975234a05a20b69ebf75671f, type: 3}
       propertyPath: m_Name

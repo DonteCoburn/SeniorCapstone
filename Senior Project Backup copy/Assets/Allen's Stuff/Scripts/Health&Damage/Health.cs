@@ -28,7 +28,7 @@ public class Health : MonoBehaviour
     [Tooltip("Whether or not to use lives")]
     public bool useLives = false;
     [Tooltip("Current number of lives this health has")]
-    public int currentLives = 3;
+    public int currentLives = 99;
     [Tooltip("The maximum number of lives this health has")]
     public int maximumLives = 5;
     [Tooltip("The amount of time to wait before respawning")]
