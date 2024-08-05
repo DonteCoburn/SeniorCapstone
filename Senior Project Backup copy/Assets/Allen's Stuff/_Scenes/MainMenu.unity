@@ -752,7 +752,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1568636804829478218, guid: c45041f43743ded48bcedcf90819a218, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
-      value: SingleLevel1
+      value: SingleLevel1 Singleplayer
+      objectReference: {fileID: 0}
+    - target: {fileID: 4450297080508474896, guid: c45041f43743ded48bcedcf90819a218, type: 3}
+      propertyPath: m_Text
+      value: Single Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 4664257674289463060, guid: c45041f43743ded48bcedcf90819a218, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
+      value: SingleLevel3 Singleplayer
       objectReference: {fileID: 0}
     - target: {fileID: 4701486191305359355, guid: c45041f43743ded48bcedcf90819a218, type: 3}
       propertyPath: m_IsActive
@@ -942,6 +950,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5082628234395599228, guid: c45041f43743ded48bcedcf90819a218, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
+      value: SingleLevel2 Singleplayer
+      objectReference: {fileID: 0}
     - target: {fileID: 5893288209769275027, guid: c45041f43743ded48bcedcf90819a218, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
       value: SingleLevel1 Singleplayer
@@ -995,7 +1007,8 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 8242357807311277096, guid: c45041f43743ded48bcedcf90819a218, type: 3}
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 2173570665449572743, guid: c45041f43743ded48bcedcf90819a218, type: 3}
       insertIndex: -1

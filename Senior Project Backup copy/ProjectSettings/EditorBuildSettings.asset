@@ -24,7 +24,7 @@ EditorBuildSettings:
     path: Assets/Allen's Stuff/_Scenes/SingleLevel1.unity
     guid: bf04280f9a13d674ea783d25a8cfc659
   - enabled: 1
-    path: Assets/Allen's Stuff/_Scenes/SingleLevel2.unity
+    path: Assets/Allen's Stuff/_Scenes/SingleLevel2 Singleplayer.unity
     guid: 4ea858eabd4eb144bb86fb6c82b879f3
   - enabled: 1
     path: Assets/Allen's Stuff/_Scenes/SingleLevel3.unity
