@@ -32,5 +32,8 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Allen's Stuff/_Scenes/SingleLevel1 Singleplayer.unity
     guid: 9d0c5e45dcba24dcb8dda093c6eab958
+  - enabled: 1
+    path: Assets/Allen's Stuff/_Scenes/SingleLevel2 Multiplayer.unity
+    guid: 50e5259b2ec5b4bfe81f3d03d663e639
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: d2eae789d736728498a52475f8e7fa42, type: 2}

@@ -494,6 +494,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   soundSlider: {fileID: 1758251143}
   masterMixer: {fileID: 24100000, guid: 8bdd3d47df2348a4485171b41768c16f, type: 2}
+--- !u!1 &1596708495 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4701486193098909488, guid: c45041f43743ded48bcedcf90819a218, type: 3}
+  m_PrefabInstance: {fileID: 4701486191110061230}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1596708497
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1596708495}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 75fd2e3838f815c459c7aa9352cee0f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!224 &1758251142 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 1220251996228201780, guid: 5d2c477183619e54ab405b4b80f418e1, type: 3}
@@ -926,6 +943,14 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4701486193098909489, guid: c45041f43743ded48bcedcf90819a218, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1596708497}
+    - target: {fileID: 4701486193098909489, guid: c45041f43743ded48bcedcf90819a218, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: LoadLevelByName
+      objectReference: {fileID: 0}
     - target: {fileID: 4701486193153764503, guid: c45041f43743ded48bcedcf90819a218, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -1014,6 +1039,9 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 1758251142}
     m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 4701486193098909488, guid: c45041f43743ded48bcedcf90819a218, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1596708497}
     - targetCorrespondingSourceObject: {fileID: 4701486191848773410, guid: c45041f43743ded48bcedcf90819a218, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1589910787}

@@ -21,6 +21,9 @@ public class SpawnPlayers : MonoBehaviour
         if (SceneManager.GetActiveScene().name == "SingleLevel1")
         {
             randomPosition = new Vector2(-14f, 0f);
+        } else if (SceneManager.GetActiveScene().name == "SingleLevel2 Multiplayer")
+        {
+            randomPosition = new Vector2(23f, -23f);
         }
         else
         {

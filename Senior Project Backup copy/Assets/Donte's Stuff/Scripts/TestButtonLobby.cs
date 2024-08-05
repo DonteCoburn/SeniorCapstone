@@ -5,22 +5,43 @@ using Photon.Pun;
 using System.Collections;
 using UnityEngine.SceneManagement;
 
-public class TestLobbyUIManager : MonoBehaviourPun
+public class TestLobbyUIManager : MonoBehaviourPunCallbacks
 {
     public TMP_Text displayText;
     public Button startButton;
     public int startCount = 3;
-    public MultiplayerTimerScript timerScript;  // Reference to the MultiplayerTimerScript
+    public MultiplayerTimerScript timerScript;
 
     private void Start()
     {
         displayText.gameObject.SetActive(false);
-        // Get reference to the MultiplayerTimerScript
         timerScript = FindObjectOfType<MultiplayerTimerScript>();
         if (timerScript == null)
         {
             Debug.LogError("MultiplayerTimerScript component not found on any GameObject in the scene.");
         }
+        PhotonNetwork.AddCallbackTarget(this);
+        UpdateStartButtonVisibility();
+    }
+
+    private void OnDestroy()
+    {
+        PhotonNetwork.RemoveCallbackTarget(this);
+    }
+
+    public override void OnPlayerEnteredRoom(Photon.Realtime.Player newPlayer)
+    {
+        UpdateStartButtonVisibility();
+    }
+
+    public override void OnPlayerLeftRoom(Photon.Realtime.Player otherPlayer)
+    {
+        UpdateStartButtonVisibility();
+    }
+
+    private void UpdateStartButtonVisibility()
+    {
+        startButton.gameObject.SetActive(PhotonNetwork.IsMasterClient && PhotonNetwork.CurrentRoom.PlayerCount >= 2);
     }
 
     public void StartNetworkedCountdownAndLoadScene()
@@ -50,9 +71,8 @@ public class TestLobbyUIManager : MonoBehaviourPun
 
         if (PhotonNetwork.IsMasterClient)
         {
-            // Reset the timer before loading the new scene, this has to be done this way or it doesn't work for some reason
             timerScript.ResetTimer();
-            photonView.RPC("LoadSceneForAll", RpcTarget.All, "SingleLevel1");
+            photonView.RPC("LoadSceneForAll", RpcTarget.All, "SingleLevel2 Multiplayer");
         }
     }
 
