@@ -28,7 +28,7 @@ public class GoalPickup : MonoBehaviour
 
                 if (spectateSystem != null)
                 {
-                    spectateSystem.MakeButtonInteractable();
+                    spectateSystem.MakeButtonVisible();
                 }
             }
         }

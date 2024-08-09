@@ -14,7 +14,6 @@ public class SpectateSystem : MonoBehaviourPun
         if (logButton != null)
         {
             logButton.onClick.AddListener(UpdateCurrentActorNumber);
-            logButton.interactable = false; // Disable button interactions initially
             logButton.gameObject.SetActive(false); // Make the button invisible initially
         }
         currentActorNumber = PhotonNetwork.LocalPlayer.ActorNumber;
@@ -51,12 +50,11 @@ public class SpectateSystem : MonoBehaviourPun
         }
     }
 
-    // This method now not only makes the button interactable but also makes it visible.
-    public void MakeButtonInteractable()
+    // This method now makes the button visible only.
+    public void MakeButtonVisible()
     {
         if (logButton != null)
         {
-            logButton.interactable = true;
             logButton.gameObject.SetActive(true); // Make the button visible
         }
     }
