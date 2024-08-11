@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using Photon.Pun;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class CreateAndJoinRooms : MonoBehaviourPunCallbacks
 {
@@ -32,6 +33,13 @@ public class CreateAndJoinRooms : MonoBehaviourPunCallbacks
         PhotonNetwork.JoinRoom(joinInput.text);
     }
 
+    public void LoadMainMenu()
+    {
+        Debug.Log("Disconnecting from Photon and returning to our main menu");
+        PhotonNetwork.Disconnect();
+        SceneManager.LoadScene("MainMenu");
+    }
+
     public override void OnJoinedRoom()
     {
         Debug.Log("Joined room successfully, loading Game level...");
@@ -48,29 +56,3 @@ public class CreateAndJoinRooms : MonoBehaviourPunCallbacks
         Debug.LogError($"Failed to join room: {message}");
     }
 }
-
-
-/*
- * Old Code
-public class CreateAndJoinRooms : MonoBehaviourPunCallbacks
-{
-    public TMP_InputField createInput;
-    public TMP_InputField joinInput;
-
-    public void CreateRoom()
-    {
-        PhotonNetwork.CreateRoom(createInput.text);
-    }
-
-    public void JoinRoom()
-    {
-        PhotonNetwork.JoinRoom(joinInput.text);
-    }
-
-    public override void OnJoinedRoom()
-    {
-        PhotonNetwork.LoadLevel("Game");
-    }
-}
-
-*/
