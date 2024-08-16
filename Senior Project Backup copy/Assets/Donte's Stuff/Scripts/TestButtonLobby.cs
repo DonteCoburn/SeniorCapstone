@@ -8,6 +8,8 @@ using UnityEngine.SceneManagement;
 public class TestLobbyUIManager : MonoBehaviourPunCallbacks
 {
     public TMP_Text displayText;
+    public TMP_Text waitingText;
+    public TMP_Dropdown levelDropdown;
     public Button startButton;
     public int startCount = 3;
     public MultiplayerTimerScript timerScript;
@@ -22,7 +24,44 @@ public class TestLobbyUIManager : MonoBehaviourPunCallbacks
         }
         PhotonNetwork.AddCallbackTarget(this);
         UpdateStartButtonVisibility();
+        photonView.RPC("UpdatePreGameText", RpcTarget.All);
     }
+
+    [PunRPC]
+    private void UpdateGameStartedText()
+    {
+        Debug.Log("Game started text updated");
+        if (PhotonNetwork.IsMasterClient)
+        {
+            waitingText.text = "";
+        }
+        else
+        {
+            waitingText.text = "Game is starting";
+        }
+    }
+
+    [PunRPC]
+    private void UpdatePreGameText()
+    {
+        Debug.Log("Pre-game text updated");
+        if (PhotonNetwork.CurrentRoom.PlayerCount < 2)
+        {
+            waitingText.text = "Waiting for more players";
+        }
+        else
+        {
+            if (PhotonNetwork.IsMasterClient)
+            {
+                waitingText.text = "Game ready to start";
+            }
+            else
+            {
+                waitingText.text = "Waiting for host to start game";
+            }
+        }
+    }
+
 
     private void OnDestroy()
     {
@@ -32,21 +71,27 @@ public class TestLobbyUIManager : MonoBehaviourPunCallbacks
     public override void OnPlayerEnteredRoom(Photon.Realtime.Player newPlayer)
     {
         UpdateStartButtonVisibility();
+        photonView.RPC("UpdatePreGameText", RpcTarget.All);
     }
 
     public override void OnPlayerLeftRoom(Photon.Realtime.Player otherPlayer)
     {
         UpdateStartButtonVisibility();
+        photonView.RPC("UpdatePreGameText", RpcTarget.All);
     }
 
     private void UpdateStartButtonVisibility()
     {
         startButton.gameObject.SetActive(PhotonNetwork.IsMasterClient && PhotonNetwork.CurrentRoom.PlayerCount >= 2);
+        levelDropdown.gameObject.SetActive(PhotonNetwork.IsMasterClient && PhotonNetwork.CurrentRoom.PlayerCount >= 2);
     }
 
+    //The start button has an onClick where it will start this
     public void StartNetworkedCountdownAndLoadScene()
     {
+        photonView.RPC("UpdateGameStartedText", RpcTarget.All);
         startButton.interactable = false;
+        levelDropdown.interactable = false;
         photonView.RPC("StartCountdown", RpcTarget.All);
     }
 
@@ -72,7 +117,22 @@ public class TestLobbyUIManager : MonoBehaviourPunCallbacks
         if (PhotonNetwork.IsMasterClient)
         {
             timerScript.ResetTimer();
-            photonView.RPC("LoadSceneForAll", RpcTarget.All, "SingleLevel2 Multiplayer");
+            // Picks level based on the host's level choice
+            switch (levelDropdown.value)
+            {
+                case 0:
+                    photonView.RPC("LoadSceneForAll", RpcTarget.All, "SingleLevel1");
+                    break;
+                case 1:
+                    photonView.RPC("LoadSceneForAll", RpcTarget.All, "SingleLevel2 Multiplayer");
+                    break;
+                case 2:
+                    photonView.RPC("LoadSceneForAll", RpcTarget.All, "SingleLevel3 Singleplayer");//Multiplayer level 3 isn't finished, will have to add later
+                    break;
+                default:
+                    Debug.Log("Invalid level selection");
+                    break;
+            }
         }
     }
 
@@ -81,4 +141,5 @@ public class TestLobbyUIManager : MonoBehaviourPunCallbacks
     {
         PhotonNetwork.LoadLevel(sceneName);
     }
+
 }
