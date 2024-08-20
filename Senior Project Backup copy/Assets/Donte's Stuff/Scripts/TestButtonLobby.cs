@@ -121,13 +121,13 @@ public class TestLobbyUIManager : MonoBehaviourPunCallbacks
             switch (levelDropdown.value)
             {
                 case 0:
-                    photonView.RPC("LoadSceneForAll", RpcTarget.All, "SingleLevel1");
+                    photonView.RPC("LoadSceneForAll", RpcTarget.All, "SingleLevel1 Multiplayer");
                     break;
                 case 1:
                     photonView.RPC("LoadSceneForAll", RpcTarget.All, "SingleLevel2 Multiplayer");
                     break;
                 case 2:
-                    photonView.RPC("LoadSceneForAll", RpcTarget.All, "SingleLevel3 Singleplayer");//Multiplayer level 3 isn't finished, will have to add later
+                    photonView.RPC("LoadSceneForAll", RpcTarget.All, "SingleLevel3 Multiplayer");
                     break;
                 default:
                     Debug.Log("Invalid level selection");

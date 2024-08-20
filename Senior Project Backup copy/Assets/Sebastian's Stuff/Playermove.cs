@@ -154,6 +154,7 @@ public class PlayerMovement2 : MonoBehaviourPunCallbacks, IPunObservable
         tr.emitting = false;
     }
 
+    [PunRPC]
     public void DisableMovement()
     {
         canMove = false;

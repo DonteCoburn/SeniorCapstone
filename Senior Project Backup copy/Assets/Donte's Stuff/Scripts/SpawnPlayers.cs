@@ -18,12 +18,16 @@ public class SpawnPlayers : MonoBehaviour
     {
         // Determine the spawn position based on the current scene, will have to make more robust later
         Vector2 randomPosition;
-        if (SceneManager.GetActiveScene().name == "SingleLevel1")
+        if (SceneManager.GetActiveScene().name == "SingleLevel1 Multiplayer")
         {
             randomPosition = new Vector2(-14f, 0f);
         } else if (SceneManager.GetActiveScene().name == "SingleLevel2 Multiplayer")
         {
             randomPosition = new Vector2(23f, -23f);
+        }
+        else if (SceneManager.GetActiveScene().name == "SingleLevel3 Multiplayer")
+        {
+            randomPosition = new Vector2(6f, -0f);
         }
         else
         {

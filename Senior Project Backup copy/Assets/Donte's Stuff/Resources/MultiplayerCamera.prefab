@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 4674533202988087911}
   - component: {fileID: 2707159271814882391}
   - component: {fileID: 14251951653731568}
+  - component: {fileID: -7373875606177335406}
   m_Layer: 0
   m_Name: MultiplayerCamera
   m_TagString: MainCamera
@@ -131,3 +132,15 @@ MonoBehaviour:
   sceneViewId: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
+--- !u!114 &-7373875606177335406
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4979175465624019379}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3265e8c45ad1f7d419a708308e85ea01, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
