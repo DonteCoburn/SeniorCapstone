@@ -7,6 +7,7 @@ public class GoalPickupMultiplayer : MonoBehaviour
 {
     public EndGoal endGoal;
     public SpectateSystem spectateSystem;
+    public QualifiedManager qualifiedManager;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -30,13 +31,12 @@ public class GoalPickupMultiplayer : MonoBehaviour
                 {
                     spectateSystem.MakeButtonVisible();
                 }
+
+                if (qualifiedManager != null)
+                {
+                    qualifiedManager.PlayerReachedGoal();
+                }
             }
         }
     }
 }
-
-
-
-
-
-
